@@ -110,3 +110,5 @@ b61a6d1 HEAD@{4}: commit (initial): wrote a readme file
 
 9.git 跟踪的是修改
 	
+10.撤销修改
+$ git checkout --readme.txt
