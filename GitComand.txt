@@ -110,5 +110,16 @@ b61a6d1 HEAD@{4}: commit (initial): wrote a readme file
 
 9.git 跟踪的是修改
 	
-10.撤销修改
-$ git checkout --readme.txt
+10.撤销修改	//注意工作区与暂存区！！
+$ git checkout -- readme.txt //可以撤销工作区的修改：
+//命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+//一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+//一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
+10.0 git log 条目过多时，按q退出
+
+10.1撤销暂存区的修改
+$ git reset HEAD file
+
+
+
