@@ -127,7 +127,7 @@ $ git reset HEAD file
 
 11.删除文件
 $ git rm file
-$ git commit -m"remove file"
+$ git commit -m"remove file"	//删除版本库中的文件
 
 11.1误删除找回
-$ git checkout -- file
+$ git checkout -- file //必须版本库中还未删除才能找回（回退
