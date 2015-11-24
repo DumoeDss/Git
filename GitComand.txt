@@ -1,0 +1,108 @@
+1.创建空目录：
+$ mkdir learngit
+$ cd learngit
+$ pwd 		//显示当前目录
+/g/learngit
+
+2.把目录设为Git可管理的仓库
+$ git init	//初始化
+Initialized empty Git repository in /g/learngit/.git/
+
+3.把文件添加到仓库
+$ git add readme.txt
+
+$ git commit -m "wrote a readme file"
+ [master (root-commit) b61a6d1] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+
+ //-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。
+ //commit可以一次提交很多文件，所以你可以多次add不同的文件
+ 
+ 4.修改文件之后查看状态
+ $ git status 
+ On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   readme.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        GitComand
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+5.查看不同
+$ git diff readme.txt
+diff --git a/readme.txt b/readme.txt
+index d8036c1..013b5bc 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,2 @@
+-Git is a version control system.
++Git is a distributed version control system.
+ Git is free software.
+\ No newline at end of file
+
+//要随时掌握工作区的状态，使用git status命令。
+//如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+
+6.查看历史记录
+$ git log
+commit 428911073c1538940a2f506524b25214d10e9fe4
+Author: Name <Email>
+Date:   Tue Nov 24 23:09:09 2015 +0800
+
+    append GPL
+
+commit 49f516192186d01458970b52e2bbbdb85366f7fa
+Author: Name <Email>
+Date:   Tue Nov 24 23:06:19 2015 +0800
+
+    add distributed
+
+commit b61a6d1029997b268c9e190427369d6b143635e1
+Author: Name <Email>
+Date:   Tue Nov 24 22:56:37 2015 +0800
+
+    wrote a readme file
+
+6.1信息格式
+$ git log --pretty=oneline
+428911073c1538940a2f506524b25214d10e9fe4 append GPL
+49f516192186d01458970b52e2bbbdb85366f7fa add distributed
+b61a6d1029997b268c9e190427369d6b143635e1 wrote a readme file
+
+7.回退版本
+$ git reset --hard HEAD^
+HEAD is now at 49f5161 add distributed
+//HEAD表示当前版本，HEAD^表示上一个版本，多的时候用HEAD~100
+
+7.1查看文件
+$ cat readme.txt
+
+7.2前进版本
+$  git reset --hard 428911073c
+HEAD is now at 4289110 append GPL
+
+7.3查看每一次命令
+$ git reflog
+4289110 HEAD@{0}: reset: moving to 428911073c
+49f5161 HEAD@{1}: reset: moving to HEAD^
+4289110 HEAD@{2}: commit: append GPL
+49f5161 HEAD@{3}: commit: add distributed
+b61a6d1 HEAD@{4}: commit (initial): wrote a readme file
+
+//HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+//穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+//要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+8.名词
+工作区
+版本库
+	.git
+	stage	//暂存区
+	master	//git自动创建的第一个分支
