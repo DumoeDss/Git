@@ -106,3 +106,5 @@ b61a6d1 HEAD@{4}: commit (initial): wrote a readme file
 	.git
 	stage	//暂存区
 	master	//git自动创建的第一个分支
+//git add命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行git commit就可以一次性把暂存区的所有修改提交到分支。
+	
