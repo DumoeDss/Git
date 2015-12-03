@@ -1,0 +1,29 @@
+$ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
+$ chmod +x shadowsocks.sh
+$ ./shadowsocks.sh 2>&1 | tee shadowsocks.log
+$ vi /etc/shadowsocks.json
+{
+"server":"your_server_ip",
+"local_address":"127.0.0.1",
+"local_port":1080,
+"port_password":{
+"8989":"password0",
+"9001":"password1",
+"9002":"password2",
+"9003":"password3",
+"9004":"password4"
+},
+"timeout":300,
+"method":"aes-256-cfb",
+"fast_open": false
+}
+
+$ /etc/init.d/shadowsocks restart
+
+Æô¶¯£º/etc/init.d/shadowsocks start
+
+Í£Ö¹£º/etc/init.d/shadowsocks stop
+
+ÖØÆô£º/etc/init.d/shadowsocks restart
+
+×´Ì¬£º/etc/init.d/shadowsocks status
