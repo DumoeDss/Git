@@ -1,0 +1,44 @@
+/# 					apt-get install subversion		//安装svn
+/# 					cd /srv
+/srv# 				mkdir svn
+/srv# 				cd svn
+/srv/svn# 			mkdir mysvn
+/srv/svn# 			svnadmin create /srv/svn/mysvn	//创建库
+/srv/svn# 			cd mysvn
+/srv/svn/mysvn# 	ls -l
+/srv# 				vim conf/authz					//用户文件
+
+[groups]
+admin= dumoedss
+[/]
+@admin =rw
+*=r
+
+/srv# 				vim conf/passwd					//密码文件
+
+[users]
+dumoedss=/*passwd*/
+
+/srv# 				vim conf/svnserve.conf			//配置文件
+
+[general]
+#匿名用户不可读
+anon-access = none
+#权限用户可写
+auth-access = write
+#密码文件为passwd
+password-db = passwd
+#权限文件为authz
+authz-db = authz
+
+/srv/conf# 			chmod +x authz
+/srv/conf# 			chmod +x passwd
+/srv/conf# 			chmod +x svnserve.conf
+/srv/svn# 			vim svnserver.sh
+
+/usr/bin/svnserve -d -r "/srv/svn/mysvn/" --config-file "/srv/conf/svnserve.conf"
+
+/srv/svn# 			chmod +x svnserver.sh
+/srv/svn# 			. svnserver.sh
+
+
